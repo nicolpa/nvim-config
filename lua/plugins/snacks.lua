@@ -5,7 +5,7 @@ vim.pack.add({
 local snacks = require("snacks")
 
 snacks.setup({
-    animate = {enabled = true},
+    animate = { enabled = true },
     bigfile = { enabled = false },
     dashboard = { enabled = false },
     explorer = { enabled = false },
@@ -19,7 +19,7 @@ snacks.setup({
     statuscolumn = { enabled = false },
     words = { enabled = false },
     lazygit = {
-      configure = false,
+        configure = false,
     },
 })
 
@@ -32,19 +32,19 @@ local   keymaps = {
 }
 -- stylua: ignore end
 for _, map in ipairs(keymaps) do
-	local opts = { desc = map.desc }
-	if map.silent ~= nil then
-		opts.silent = map.silent
-	end
-	if map.noremap ~= nil then
-		opts.noremap = map.noremap
-	else
-		opts.noremap = true
-	end
-	if map.expr ~= nil then
-		opts.expr = map.expr
-	end
+    local opts = { desc = map.desc }
+    if map.silent ~= nil then
+        opts.silent = map.silent
+    end
+    if map.noremap ~= nil then
+        opts.noremap = map.noremap
+    else
+        opts.noremap = true
+    end
+    if map.expr ~= nil then
+        opts.expr = map.expr
+    end
 
-	local mode = map.mode or "n"
-	vim.keymap.set(mode, map[1], map[2], opts)
+    local mode = map.mode or "n"
+    vim.keymap.set(mode, map[1], map[2], opts)
 end
