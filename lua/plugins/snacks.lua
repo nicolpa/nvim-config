@@ -7,6 +7,7 @@ local snacks = require("snacks")
 snacks.setup({
     animate = { enabled = true },
     bigfile = { enabled = false },
+    dim = { enabled = true },
     dashboard = { enabled = false },
     explorer = { enabled = false },
     indent = { enabled = false },

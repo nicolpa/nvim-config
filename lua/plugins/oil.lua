@@ -18,3 +18,5 @@ require("oil").setup({
 
 vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
 vim.keymap.set("n", "<leader>o", "<CMD>Oil<CR>", { desc = "Open parent directory" })
+vim.keymap.set("n", "<leader>ws", "<C-W>s<CMD>Oil<CR>", { desc = "Open explorer in new horizontal window" })
+vim.keymap.set("n", "<leader>wv", "<C-W>v<CMD>Oil<CR>", { desc = "Open exploror in new vertical window" })
