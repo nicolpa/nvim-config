@@ -5,38 +5,67 @@ vim.pack.add({
 })
 
 require("lualine").setup({
-
     options = {
-        theme = bubbles_theme,
         component_separators = "",
         section_separators = { left = "", right = "" },
     },
+    extensions = { "oil" },
     sections = {
         lualine_a = { "mode" },
-        lualine_b = { "branch", "diagnostics" },
-        lualine_c = { filename },
-        lualine_x = {
-            function()
-                local reg = vim.fn.reg_recording()
-                if reg ~= "" then
-                    return "Recording @" .. reg
-                end
-                return ""
-            end,
-        },
-        lualine_y = { "searchcount", "filetype", "progress" },
-        lualine_z = {
-            { "location" },
-        },
+        lualine_b = { "branch", "diff" },
+        lualine_c = { "diagnostics" },
+        lualine_d = {},
+        lualine_x = {},
+        lualine_y = {},
+        lualine_z = { "location" },
     },
     inactive_sections = {
-        lualine_a = { filename },
+        lualine_a = {
+            {
+                "filename",
+                symbols = {
+                    modified = "●", -- Text to show when the file is modified.
+                },
+            },
+        },
+        lualine_b = {},
+        lualine_c = { "diagnostics" },
+        lualine_x = {},
+        -- lualine_y = { "filetype" },
+        lualine_z = { "location" },
+    },
+    tabline = {
+        lualine_a = {
+            {
+                "tabs",
+                mode = 1,
+
+                fmt = function(name, context)
+                    local buflist = vim.fn.tabpagebuflist(context.tabnr)
+                    local winnr = vim.fn.tabpagewinnr(context.tabnr)
+                    local bufnr = buflist[winnr]
+
+                    if vim.bo[bufnr].filetype ~= "oil" then
+                        return name
+                    end
+
+                    local dir = vim.api.nvim_buf_get_name(bufnr)
+
+                    dir = dir:gsub("^oil://", "")
+                    dir = dir:gsub("/$", "")
+
+                    return "󰉋 " .. vim.fn.fnamemodify(dir, ":~")
+                end,
+
+                symbols = {
+                    modified = " ●",
+                },
+            },
+        },
         lualine_b = {},
         lualine_c = {},
         lualine_x = {},
         lualine_y = {},
         lualine_z = {},
     },
-    tabline = {},
-    extensions = {},
 })

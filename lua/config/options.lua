@@ -4,6 +4,9 @@ vim.opt.clipboard = "unnamedplus"
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
+vim.o.signcolumn = "yes"
+vim.o.winborder = "rounded"
+
 -- Indentation
 vim.opt.tabstop = 4
 vim.opt.softtabstop = 4
@@ -32,5 +35,6 @@ vim.o.linebreak = true
 vim.o.splitright = true
 vim.o.splitbelow = true
 
--- Disable intro
--- vim.opt.shortmess:append("I")
+vim.opt.termguicolors = true
+
+vim.opt.relativenumber = true
