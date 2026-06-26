@@ -1,4 +1,4 @@
 require("config.options")
-require("config.keybinds")
+require("config.keymaps")
 require("config.ui2")
 require("config.yank_highlight")

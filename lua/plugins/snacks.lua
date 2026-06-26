@@ -34,6 +34,7 @@ local   keymaps = {
     { "<leader><leader>", function() Snacks.picker.buffers() end, desc = "List opened buffers" },
     { "<leader>sd", function() Snacks.picker.diagnostics_buffer() end, desc = "[S]earch buffers diagnostics" },
     { "<leader>sD", function() Snacks.picker.diagnostics() end, desc = "[S]earch buffer diagnostics" },
+    { "<leader>sr", function() Snacks.picker.resume() end, desc = "[S]earch resume" },
 }
 -- stylua: ignore end
 
