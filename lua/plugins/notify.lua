@@ -4,10 +4,18 @@ vim.pack.add({
     },
 })
 
-vim.notify = require("notify")
+local notify = require("notify")
 
-require("notify").setup({
-    timeout = 1500,
+vim.notify = notify
+
+notify.setup({
+    timeout = 2004,
 })
 
--- vim.notify(timeou)
+local map = vim.keymap.set
+map("n", "<leader>sn", ":Notifications<CR>", { noremap = true, desc = "Show notification history" })
+
+map("n", "<leader>sN", function()
+    notify("Notification history cleared", "info", { render = "compact" })
+    notify.clear_history()
+end, { noremap = true, desc = "Clear notification history" })

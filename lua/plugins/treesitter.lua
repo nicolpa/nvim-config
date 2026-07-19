@@ -10,10 +10,12 @@ require("nvim-treesitter").install({
     "c",
     "cpp",
     "lua",
+    "cmake",
+    "make",
 })
 
 vim.api.nvim_create_autocmd("FileType", {
-    pattern = { "c", "cpp", "lua", "bash" },
+    pattern = { "c", "cpp", "lua", "bash", "cmake", "make" },
 
     callback = function()
         vim.treesitter.start()
