@@ -1,71 +1,90 @@
-vim.pack.add({
-    {
-        src = "https://github.com/nvim-lualine/lualine.nvim",
-    },
-})
+return {
+    "nvim-lualine/lualine.nvim",
+    dependencies = { "nvim-tree/nvim-web-devicons" },
 
-require("lualine").setup({
-    options = {
-        component_separators = "",
-        section_separators = { left = "", right = "" },
-    },
-    extensions = { "oil" },
-    sections = {
-        lualine_a = { "mode" },
-        lualine_b = { "branch", "diff" },
-        lualine_c = { "diagnostics" },
-        lualine_d = {},
-        lualine_x = {},
-        lualine_y = {},
-        lualine_z = { "location" },
-    },
-    inactive_sections = {
-        lualine_a = {
-            {
-                "filename",
-                symbols = {
-                    modified = "●", -- Text to show when the file is modified.
-                },
+    opts = {
+        icons_enabled = true,
+        theme = "auto",
+        component_separators = { left = "", right = "" },
+        section_separators = { left = "", right = "" },
+        disabled_filetypes = {
+            statusline = { "neo-tree" },
+            winbar = {},
+        },
+        ignore_focus = {},
+        always_divide_middle = true,
+        always_show_tabline = true,
+        globalstatus = false,
+        refresh = {
+            statusline = 1000,
+            tabline = 1000,
+            winbar = 1000,
+            refresh_time = 16, -- ~60fps
+            events = {
+                "WinEnter",
+                "BufEnter",
+                "BufWritePost",
+                "SessionLoadPost",
+                "FileChangedShellPost",
+                "VimResized",
+                "Filetype",
+                "CursorMoved",
+                "CursorMovedI",
+                "ModeChanged",
             },
         },
-        lualine_b = {},
-        lualine_c = { "diagnostics" },
-        lualine_x = {},
-        -- lualine_y = { "filetype" },
-        lualine_z = { "location" },
-    },
-    tabline = {
-        lualine_a = {
-            {
-                "tabs",
-                mode = 1,
+        sections = {
+            lualine_a = { "mode" },
+            lualine_b = { "branch", "diff", "diagnostics" },
+            lualine_c = {},
+            lualine_x = { "filetype" },
+            lualine_y = { "progress" },
+            lualine_z = { "location" },
+        },
+        inactive_sections = {
+            lualine_a = {},
+            lualine_b = {},
+            lualine_c = {},
+            lualine_x = {},
+            lualine_y = {},
+            lualine_z = { "location" },
+        },
+        tabline = {
+            lualine_a = {
+                {
+                    "tabs",
+                    mode = 1,
 
-                fmt = function(name, context)
-                    local buflist = vim.fn.tabpagebuflist(context.tabnr)
-                    local winnr = vim.fn.tabpagewinnr(context.tabnr)
-                    local bufnr = buflist[winnr]
+                    fmt = function(name, context)
+                        local buflist = vim.fn.tabpagebuflist(context.tabnr)
+                        local winnr = vim.fn.tabpagewinnr(context.tabnr)
+                        local bufnr = buflist[winnr]
 
-                    if vim.bo[bufnr].filetype ~= "oil" then
-                        return name
-                    end
+                        if vim.bo[bufnr].filetype ~= "oil" then
+                            return name
+                        end
 
-                    local dir = vim.api.nvim_buf_get_name(bufnr)
+                        local dir = vim.api.nvim_buf_get_name(bufnr)
 
-                    dir = dir:gsub("^oil://", "")
-                    dir = dir:gsub("/$", "")
+                        dir = dir:gsub("^oil://", "")
+                        dir = dir:gsub("/$", "")
 
-                    return "󰉋 " .. vim.fn.fnamemodify(dir, ":~")
-                end,
+                        return "󰉋 " .. vim.fn.fnamemodify(dir, ":~")
+                    end,
 
-                symbols = {
-                    modified = " ●",
+                    symbols = {
+                        modified = " ●",
+                    },
                 },
             },
+            lualine_b = {},
+            lualine_c = {},
+            lualine_x = {},
+            lualine_y = {},
+            lualine_z = {},
         },
-        lualine_b = {},
-        lualine_c = {},
-        lualine_x = {},
-        lualine_y = {},
-        lualine_z = {},
+        winbar = {},
+        inactive_winbar = {},
+        extensions = {},
     },
-})
+}

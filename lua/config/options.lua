@@ -2,9 +2,6 @@ vim.opt.clipboard = "unnamedplus" -- Use system clipboard
 vim.opt.completeopt = { "menuone", "noselect", "popup" }
 vim.opt.mouse = "a"
 
-vim.g.mapleader = " "
-vim.g.maplocalleader = " "
-
 -- Tab
 vim.opt.tabstop = 4
 vim.opt.softtabstop = 4

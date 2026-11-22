@@ -1,7 +1,5 @@
-vim.pack.add({
-    {
-        src = "https://github.com/windwp/nvim-autopairs",
-    },
-})
-
-require("nvim-autopairs").setup({})
+return {
+    "windwp/nvim-autopairs",
+    event = "InsertEnter",
+    config = true,
+}

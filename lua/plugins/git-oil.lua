@@ -1,7 +1,5 @@
-vim.pack.add({
-    {
-        src = "https://github.com/smiggiddy/git-oil.nvim",
-    },
-})
-
-require("git-oil").setup({})
+return {
+    "smiggiddy/git-oil.nvim",
+    dependencies = { "stevearc/oil.nvim" },
+    opts = {},
+}
